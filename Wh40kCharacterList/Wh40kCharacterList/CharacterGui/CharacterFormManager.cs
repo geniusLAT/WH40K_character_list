@@ -9,10 +9,27 @@ namespace Wh40kCharacterList.CharacterGui;
 
 internal class CharacterFormManager
 {
-    public Character _chosenCharacter;
+    public Character ChosenCharacter;
+
+    public CharacterForm Form;
+
+    private readonly CharacteristicGuiManagment _characteristicGuiManagment;
+
+    public CharacterFormManager(CharacterForm characterForm)
+    {
+        Form = characterForm;
+        _characteristicGuiManagment = new()
+        { CharacterFormManager = this };
+    }
+
+    public void RenderCharacter()
+    {
+        RenderCharacter(ChosenCharacter);
+    }
 
     public void RenderCharacter(Character character)
     {
-
+        ChosenCharacter = character;
+        _characteristicGuiManagment.Render(character);
     }
 }

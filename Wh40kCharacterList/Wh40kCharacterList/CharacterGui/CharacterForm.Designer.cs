@@ -40,14 +40,14 @@ partial class CharacterForm : Form
         panel1 = new Panel();
         tabPage2 = new TabPage();
         BalliticSkillPanel = new Panel();
-        BalliticSkillValueLabel = new Label();
+        BallisticSkillValueLabel = new Label();
         BalliticSkillNameLabel = new Label();
         radioButton5 = new RadioButton();
         radioButton6 = new RadioButton();
         radioButton7 = new RadioButton();
         radioButton8 = new RadioButton();
         StrenghtPanel = new Panel();
-        StrentghValueLabel = new Label();
+        StrenghtValueLabel = new Label();
         StrenghtNameLabel = new Label();
         radioButton9 = new RadioButton();
         radioButton10 = new RadioButton();
@@ -89,7 +89,7 @@ partial class CharacterForm : Form
         radioButton31 = new RadioButton();
         radioButton32 = new RadioButton();
         FellowshipPanel = new Panel();
-        label1 = new Label();
+        FellowShipValueLabel = new Label();
         FellowshipNameLabel = new Label();
         radioButton33 = new RadioButton();
         radioButton34 = new RadioButton();
@@ -231,7 +231,7 @@ partial class CharacterForm : Form
         // 
         // BalliticSkillPanel
         // 
-        BalliticSkillPanel.Controls.Add(BalliticSkillValueLabel);
+        BalliticSkillPanel.Controls.Add(BallisticSkillValueLabel);
         BalliticSkillPanel.Controls.Add(BalliticSkillNameLabel);
         BalliticSkillPanel.Controls.Add(radioButton5);
         BalliticSkillPanel.Controls.Add(radioButton6);
@@ -242,15 +242,15 @@ partial class CharacterForm : Form
         BalliticSkillPanel.Size = new Size(57, 58);
         BalliticSkillPanel.TabIndex = 6;
         // 
-        // BalliticSkillValueLabel
+        // BallisticSkillValueLabel
         // 
-        BalliticSkillValueLabel.AutoSize = true;
-        BalliticSkillValueLabel.Font = new Font("Segoe UI", 10F);
-        BalliticSkillValueLabel.Location = new Point(15, 20);
-        BalliticSkillValueLabel.Name = "BalliticSkillValueLabel";
-        BalliticSkillValueLabel.Size = new Size(25, 19);
-        BalliticSkillValueLabel.TabIndex = 5;
-        BalliticSkillValueLabel.Text = "50";
+        BallisticSkillValueLabel.AutoSize = true;
+        BallisticSkillValueLabel.Font = new Font("Segoe UI", 10F);
+        BallisticSkillValueLabel.Location = new Point(15, 20);
+        BallisticSkillValueLabel.Name = "BallisticSkillValueLabel";
+        BallisticSkillValueLabel.Size = new Size(25, 19);
+        BallisticSkillValueLabel.TabIndex = 5;
+        BallisticSkillValueLabel.Text = "50";
         // 
         // BalliticSkillNameLabel
         // 
@@ -305,7 +305,7 @@ partial class CharacterForm : Form
         // 
         // StrenghtPanel
         // 
-        StrenghtPanel.Controls.Add(StrentghValueLabel);
+        StrenghtPanel.Controls.Add(StrenghtValueLabel);
         StrenghtPanel.Controls.Add(StrenghtNameLabel);
         StrenghtPanel.Controls.Add(radioButton9);
         StrenghtPanel.Controls.Add(radioButton10);
@@ -316,15 +316,15 @@ partial class CharacterForm : Form
         StrenghtPanel.Size = new Size(57, 58);
         StrenghtPanel.TabIndex = 7;
         // 
-        // StrentghValueLabel
+        // StrenghtValueLabel
         // 
-        StrentghValueLabel.AutoSize = true;
-        StrentghValueLabel.Font = new Font("Segoe UI", 10F);
-        StrentghValueLabel.Location = new Point(15, 20);
-        StrentghValueLabel.Name = "StrentghValueLabel";
-        StrentghValueLabel.Size = new Size(25, 19);
-        StrentghValueLabel.TabIndex = 5;
-        StrentghValueLabel.Text = "50";
+        StrenghtValueLabel.AutoSize = true;
+        StrenghtValueLabel.Font = new Font("Segoe UI", 10F);
+        StrenghtValueLabel.Location = new Point(15, 20);
+        StrenghtValueLabel.Name = "StrenghtValueLabel";
+        StrenghtValueLabel.Size = new Size(25, 19);
+        StrenghtValueLabel.TabIndex = 5;
+        StrenghtValueLabel.Text = "50";
         // 
         // StrenghtNameLabel
         // 
@@ -749,7 +749,7 @@ partial class CharacterForm : Form
         // 
         // FellowshipPanel
         // 
-        FellowshipPanel.Controls.Add(label1);
+        FellowshipPanel.Controls.Add(FellowShipValueLabel);
         FellowshipPanel.Controls.Add(FellowshipNameLabel);
         FellowshipPanel.Controls.Add(radioButton33);
         FellowshipPanel.Controls.Add(radioButton34);
@@ -760,15 +760,15 @@ partial class CharacterForm : Form
         FellowshipPanel.Size = new Size(57, 58);
         FellowshipPanel.TabIndex = 13;
         // 
-        // label1
+        // FellowShipValueLabel
         // 
-        label1.AutoSize = true;
-        label1.Font = new Font("Segoe UI", 10F);
-        label1.Location = new Point(15, 20);
-        label1.Name = "label1";
-        label1.Size = new Size(25, 19);
-        label1.TabIndex = 5;
-        label1.Text = "50";
+        FellowShipValueLabel.AutoSize = true;
+        FellowShipValueLabel.Font = new Font("Segoe UI", 10F);
+        FellowShipValueLabel.Location = new Point(15, 20);
+        FellowShipValueLabel.Name = "FellowShipValueLabel";
+        FellowShipValueLabel.Size = new Size(25, 19);
+        FellowShipValueLabel.TabIndex = 5;
+        FellowShipValueLabel.Text = "50";
         // 
         // FellowshipNameLabel
         // 
@@ -863,62 +863,62 @@ partial class CharacterForm : Form
     private RadioButton radioButton3;
     private RadioButton radioButton2;
     private RadioButton radioButton1;
-    private Label WeaponSkillValueLabel;
     private Label WeaponSkillNameLabel;
     private Panel BalliticSkillPanel;
-    private Label BalliticSkillValueLabel;
     private Label BalliticSkillNameLabel;
     private RadioButton radioButton5;
     private RadioButton radioButton6;
     private RadioButton radioButton7;
     private RadioButton radioButton8;
     private Panel StrenghtPanel;
-    private Label StrentghValueLabel;
     private Label StrenghtNameLabel;
     private RadioButton radioButton9;
     private RadioButton radioButton10;
     private RadioButton radioButton11;
     private RadioButton radioButton12;
     private Panel IntelligencePanel;
-    private Label IntelligenceValueLabel;
     private Label IntelligenceNameLabel;
     private RadioButton radioButton21;
     private RadioButton radioButton22;
     private RadioButton radioButton23;
     private RadioButton radioButton24;
     private Panel AgilityPanel;
-    private Label AgilityValueLabel;
     private Label AgilityNameLabel;
     private RadioButton radioButton17;
     private RadioButton radioButton18;
     private RadioButton radioButton19;
     private RadioButton radioButton20;
     private Panel ToughnessPanel;
-    private Label ToughnessValueLabel;
     private Label ToughnessNameLabel;
     private RadioButton radioButton13;
     private RadioButton radioButton14;
     private RadioButton radioButton15;
     private RadioButton radioButton16;
     private Panel FellowshipPanel;
-    private Label label1;
     private Label FellowshipNameLabel;
     private RadioButton radioButton33;
     private RadioButton radioButton34;
     private RadioButton radioButton35;
     private RadioButton radioButton36;
     private Panel WillPowerPanel;
-    private Label WillpowerValueLabel;
     private Label WillpowerNameLabel;
     private RadioButton radioButton29;
     private RadioButton radioButton30;
     private RadioButton radioButton31;
     private RadioButton radioButton32;
     private Panel PerceptionPanel;
-    private Label PerceptionValueLabel;
     private Label PerceptionNameLabel;
     private RadioButton radioButton25;
     private RadioButton radioButton26;
     private RadioButton radioButton27;
     private RadioButton radioButton28;
+    public Label WeaponSkillValueLabel;
+    public Label BallisticSkillValueLabel;
+    public Label StrenghtValueLabel;
+    public Label IntelligenceValueLabel;
+    public Label AgilityValueLabel;
+    public Label ToughnessValueLabel;
+    public Label FellowShipValueLabel;
+    public Label WillpowerValueLabel;
+    public Label PerceptionValueLabel;
 }

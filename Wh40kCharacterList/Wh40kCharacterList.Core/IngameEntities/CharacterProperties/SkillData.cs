@@ -64,4 +64,23 @@ static class SkillData
             _ => false,
         };
     }
+
+    public static bool IsGroup(Skill skill)
+    {
+        return skill switch
+        {
+            Skill.Ciphers => true,
+            Skill.CommonLore => true,
+            Skill.Drive => true,
+            Skill.ForbiddenLore => true,
+            Skill.Navigation => true,
+            Skill.Performer => true,
+            Skill.Pilot => true,
+            Skill.ScholasticLore => true,
+            Skill.SecretTongue => true,
+            Skill.SpeakLanguage => true,
+            Skill.Trade => true,
+            _ => false,
+        };
+    }
 }

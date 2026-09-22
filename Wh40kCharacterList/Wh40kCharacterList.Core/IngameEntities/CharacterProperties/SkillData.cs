@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Wh40kCharacterList.Core.IngameEntities.CharacterProperties;
+﻿namespace Wh40kCharacterList.Core.IngameEntities.CharacterProperties;
 
 static public class SkillData
 {

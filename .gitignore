@@ -1,0 +1,6 @@
+.vs/
+**/bin/
+**/obj/
+token.txt
+chatId.txt
+connect.bat

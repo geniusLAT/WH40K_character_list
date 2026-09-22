@@ -1,18 +1,19 @@
-namespace Wh40kCharacterList
+using Wh40kCharacterList.CharacterForm;
+
+namespace Wh40kCharacterList;
+
+internal static class Program
 {
-    internal static class Program
+    /// <summary>
+    ///  The main entry point for the application.
+    /// </summary>
+    [STAThread]
+    static void Main()
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new CharacterForm());
-            //Application.Run(new GreetingForm());
-        }
+        // To customize application configuration such as set high DPI settings or default font,
+        // see https://aka.ms/applicationconfiguration.
+        ApplicationConfiguration.Initialize();
+        Application.Run(new CharacterForm());
+        //Application.Run(new GreetingForm());
     }
 }

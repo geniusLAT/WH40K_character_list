@@ -15,10 +15,14 @@ internal class CharacterFormManager
 
     private readonly CharacteristicGuiManagment _characteristicGuiManagment;
 
+    private readonly SkillGuiManagment _skillGuiManagment;
+
     public CharacterFormManager(CharacterForm characterForm)
     {
         Form = characterForm;
         _characteristicGuiManagment = new()
+        { CharacterFormManager = this };
+        _skillGuiManagment = new()
         { CharacterFormManager = this };
 
         ChosenCharacter = new();
@@ -33,5 +37,6 @@ internal class CharacterFormManager
     {
         ChosenCharacter = character;
         _characteristicGuiManagment.Render(character);
+        _skillGuiManagment.Render(character);
     }
 }

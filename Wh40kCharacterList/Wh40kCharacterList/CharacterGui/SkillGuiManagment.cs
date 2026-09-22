@@ -44,7 +44,7 @@ internal class SkillGuiManagment
             {
                 //BackColor = Color.Blue,
                 Location = new Point(10, totalUpperMargin),
-                Size = new Size(180+70, 10)
+                Size = new Size(SkillLabelWidth + 70, 10)
             };
             currentPanelToFill.Controls.Add(skillPanel);
            

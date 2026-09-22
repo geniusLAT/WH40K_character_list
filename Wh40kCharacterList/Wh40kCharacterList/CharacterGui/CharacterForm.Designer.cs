@@ -30,6 +30,8 @@ partial class CharacterForm : Form
     {
         SkillTabControl = new TabControl();
         tabPage1 = new TabPage();
+        panel1 = new Panel();
+        label1 = new Label();
         RightSkillPanel = new Panel();
         FellowshipPanel = new Panel();
         FellowShipValueLabel = new Label();
@@ -96,10 +98,9 @@ partial class CharacterForm : Form
         radioButton1 = new RadioButton();
         LeftSkillPanel = new Panel();
         tabPage2 = new TabPage();
-        panel1 = new Panel();
-        label1 = new Label();
         SkillTabControl.SuspendLayout();
         tabPage1.SuspendLayout();
+        panel1.SuspendLayout();
         FellowshipPanel.SuspendLayout();
         WillPowerPanel.SuspendLayout();
         PerceptionPanel.SuspendLayout();
@@ -109,7 +110,6 @@ partial class CharacterForm : Form
         StrenghtPanel.SuspendLayout();
         BalliticSkillPanel.SuspendLayout();
         WeaponSkillPanel.SuspendLayout();
-        panel1.SuspendLayout();
         SuspendLayout();
         // 
         // SkillTabControl
@@ -143,6 +143,23 @@ partial class CharacterForm : Form
         tabPage1.TabIndex = 0;
         tabPage1.Text = "Персонаж";
         tabPage1.UseVisualStyleBackColor = true;
+        // 
+        // panel1
+        // 
+        panel1.Controls.Add(label1);
+        panel1.Location = new Point(212, 130);
+        panel1.Name = "panel1";
+        panel1.Size = new Size(200, 100);
+        panel1.TabIndex = 14;
+        // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Location = new Point(3, 0);
+        label1.Name = "label1";
+        label1.Size = new Size(38, 15);
+        label1.TabIndex = 0;
+        label1.Text = "label1";
         // 
         // RightSkillPanel
         // 
@@ -836,23 +853,6 @@ partial class CharacterForm : Form
         tabPage2.Text = "Снаряжение";
         tabPage2.UseVisualStyleBackColor = true;
         // 
-        // panel1
-        // 
-        panel1.Controls.Add(label1);
-        panel1.Location = new Point(212, 130);
-        panel1.Name = "panel1";
-        panel1.Size = new Size(200, 100);
-        panel1.TabIndex = 14;
-        // 
-        // label1
-        // 
-        label1.AutoSize = true;
-        label1.Location = new Point(3, 0);
-        label1.Name = "label1";
-        label1.Size = new Size(38, 15);
-        label1.TabIndex = 0;
-        label1.Text = "label1";
-        // 
         // CharacterForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -864,6 +864,8 @@ partial class CharacterForm : Form
         Text = "CharacterForm";
         SkillTabControl.ResumeLayout(false);
         tabPage1.ResumeLayout(false);
+        panel1.ResumeLayout(false);
+        panel1.PerformLayout();
         FellowshipPanel.ResumeLayout(false);
         FellowshipPanel.PerformLayout();
         WillPowerPanel.ResumeLayout(false);
@@ -882,8 +884,6 @@ partial class CharacterForm : Form
         BalliticSkillPanel.PerformLayout();
         WeaponSkillPanel.ResumeLayout(false);
         WeaponSkillPanel.PerformLayout();
-        panel1.ResumeLayout(false);
-        panel1.PerformLayout();
         ResumeLayout(false);
     }
 

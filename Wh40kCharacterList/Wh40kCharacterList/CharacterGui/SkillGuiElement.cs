@@ -8,5 +8,5 @@ internal class SkillGuiElement
 
     public required Label Label { get; set; }
 
-    public required SkillLevel SkillLevel { get; set; }
+    public SkillLevel? SkillLevel { get; set; }
 }

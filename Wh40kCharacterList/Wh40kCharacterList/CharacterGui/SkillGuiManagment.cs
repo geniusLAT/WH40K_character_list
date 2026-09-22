@@ -7,8 +7,14 @@ internal class SkillGuiManagment
 {
     public required CharacterFormManager CharacterFormManager { get; init; }
 
+    private List<SkillGuiElement> _skillGuiElements = [];
+
     public void Render(Character character)
     {
+        CharacterFormManager.Form.LeftSkillPanel.Controls.Clear();
+        CharacterFormManager.Form.RightSkillPanel.Controls.Clear();
+        _skillGuiElements.Clear();
+
         Panel currentPanelToFill = CharacterFormManager.Form.LeftSkillPanel;
         var totalUpperMargin = 0;
         for (int i = 0; i < 49; i++)
@@ -46,7 +52,8 @@ internal class SkillGuiManagment
                 skillPanel.Size = new Size(190, 10 * (skillLevels.Count + 1));
                 for (int subSkillIndex = 0; subSkillIndex < skillLevels.Count; subSkillIndex++)
                 {
-                    var groupSkill = skillLevels[subSkillIndex] as GroupSkillLevel;
+                    var skillLevel = skillLevels[subSkillIndex];
+                    var groupSkill = skillLevel as GroupSkillLevel;
 
                     totalUpperMargin += 10;
                     var subSkillPanel = new Panel()
@@ -55,7 +62,8 @@ internal class SkillGuiManagment
                         Location = new Point(0, 10 * (subSkillIndex + 1)),
                         Size = new Size(190, 10)
                     };
-                    
+                    subSkillPanel.Click += SkillGuiElement_Click;
+
                     skillPanel.Controls.Add(subSkillPanel);
 
                     var subSkillLabel = new Label()
@@ -64,16 +72,34 @@ internal class SkillGuiManagment
                         Font = new("Segoe UI", 7),
                         Text = $"   {groupSkill?.GroupName ?? string.Empty}"
                     };
+                    subSkillLabel.Click += SkillGuiElement_Click;
                     subSkillPanel.Controls.Add(subSkillLabel);
 
-                    RenderMonoSkill(skillLevels[subSkillIndex], character, subSkillPanel);
+                    RenderMonoSkill(skillLevel, character, subSkillPanel);
+                    _skillGuiElements.Add(new()
+                    {
+                        Label = subSkillLabel,
+                        Panel = subSkillPanel,
+                        SkillLevel = skillLevel
+                    }
+                    );
                 }
             } else
             {
-                RenderMonoSkill(skillLevels.FirstOrDefault(), character, skillPanel);
+
+                skillPanel.Click += SkillGuiElement_Click;
+                skillLabel.Click += SkillGuiElement_Click;
+
+                var skillLevel = skillLevels.FirstOrDefault();
+                RenderMonoSkill(skillLevel, character, skillPanel);
+                _skillGuiElements.Add(new()
+                {
+                    Label = skillLabel,
+                    Panel = skillPanel,
+                    SkillLevel = skillLevel
+                }
+                   );
             }
-            //var value = character.GetCharacteristic(skill);
-            //characteristicLabel.Text = value.ToString();
         }
     }
 
@@ -91,7 +117,6 @@ internal class SkillGuiManagment
             levelValue = skillLevel.Level;
             chance = CalculcateChanceForSkill(skillLevel, character);
         }
-
 
         for (int skilButtonIndex = 0; skilButtonIndex < 4; skilButtonIndex++)
         {
@@ -112,6 +137,18 @@ internal class SkillGuiManagment
             Text = $"{chance}%"
         };
         skillPanel.Controls.Add(skillRollDefaultChanceLabel);
+    }
+
+    private void SkillGuiElement_Click(object sender, EventArgs e)
+    {
+        var skillGuiElement = _skillGuiElements.Where(element => element.Panel == sender || element.Label == sender).FirstOrDefault();
+
+        if (skillGuiElement is null)
+        {
+            return;
+        }
+
+        skillGuiElement.Panel.BackColor = Color.Yellow;
     }
 
     int CalculcateChanceForSkill(SkillLevel skillLevel, Character character)

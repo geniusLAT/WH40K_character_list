@@ -20,6 +20,8 @@ internal class CharacterFormManager
         Form = characterForm;
         _characteristicGuiManagment = new()
         { CharacterFormManager = this };
+
+        ChosenCharacter = new();
     }
 
     public void RenderCharacter()

@@ -1,4 +1,4 @@
-using Wh40kCharacterList.CharacterForm;
+using Wh40kCharacterList.CharacterGui;
 
 namespace Wh40kCharacterList;
 

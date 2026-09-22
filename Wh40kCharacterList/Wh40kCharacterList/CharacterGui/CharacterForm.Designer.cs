@@ -98,6 +98,8 @@ partial class CharacterForm : Form
         radioButton1 = new RadioButton();
         LeftSkillPanel = new Panel();
         tabPage2 = new TabPage();
+        RollDiceButton = new Button();
+        RollDiceChanceLabel = new Label();
         SkillTabControl.SuspendLayout();
         tabPage1.SuspendLayout();
         panel1.SuspendLayout();
@@ -853,12 +855,32 @@ partial class CharacterForm : Form
         tabPage2.Text = "Снаряжение";
         tabPage2.UseVisualStyleBackColor = true;
         // 
+        // RollDiceButton
+        // 
+        RollDiceButton.Location = new Point(12, 678);
+        RollDiceButton.Name = "RollDiceButton";
+        RollDiceButton.Size = new Size(75, 23);
+        RollDiceButton.TabIndex = 1;
+        RollDiceButton.Text = "Кинуть кубик";
+        RollDiceButton.UseVisualStyleBackColor = true;
+        // 
+        // RollDiceChanceLabel
+        // 
+        RollDiceChanceLabel.AutoSize = true;
+        RollDiceChanceLabel.Location = new Point(12, 660);
+        RollDiceChanceLabel.Name = "RollDiceChanceLabel";
+        RollDiceChanceLabel.Size = new Size(38, 15);
+        RollDiceChanceLabel.TabIndex = 2;
+        RollDiceChanceLabel.Text = "label2";
+        // 
         // CharacterForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         AutoScroll = true;
         ClientSize = new Size(800, 741);
+        Controls.Add(RollDiceChanceLabel);
+        Controls.Add(RollDiceButton);
         Controls.Add(SkillTabControl);
         Name = "CharacterForm";
         Text = "CharacterForm";
@@ -885,6 +907,7 @@ partial class CharacterForm : Form
         WeaponSkillPanel.ResumeLayout(false);
         WeaponSkillPanel.PerformLayout();
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -959,4 +982,6 @@ partial class CharacterForm : Form
     public Panel LeftSkillPanel;
     private Panel panel1;
     private Label label1;
+    public Button RollDiceButton;
+    public Label RollDiceChanceLabel;
 }

@@ -164,6 +164,13 @@ internal class SkillGuiManagment
 
         skillGuiElement.Panel.BackColor = Color.Yellow;
         ChosenSkillGuiElement = skillGuiElement;
+        var chance = 0;
+        if (skillGuiElement.SkillLevel is not null)
+        {
+            chance = CalculcateChanceForSkill(skillGuiElement.SkillLevel, CharacterFormManager.ChosenCharacter);
+        }
+
+        CharacterFormManager.RollDiceManagment.RecalculateChance(chance);
     }
 
     int CalculcateChanceForSkill(SkillLevel skillLevel, Character character)

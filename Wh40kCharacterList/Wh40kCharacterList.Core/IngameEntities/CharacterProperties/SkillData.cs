@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Wh40kCharacterList.Core.IngameEntities.CharacterProperties;
 
-static class SkillData
+static public class SkillData
 {
     public static bool MustBeBasicByDefault(Skill skill)
     {

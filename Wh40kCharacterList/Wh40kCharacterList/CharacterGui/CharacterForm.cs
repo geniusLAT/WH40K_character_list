@@ -1,4 +1,6 @@
-﻿namespace Wh40kCharacterList.CharacterGui;
+﻿using Wh40kCharacterList.Core.Language;
+
+namespace Wh40kCharacterList.CharacterGui;
 
 public partial class CharacterForm : Form
 {
@@ -6,7 +8,7 @@ public partial class CharacterForm : Form
 
     public CharacterForm()
     {
-        _manager = new(this);
+        _manager = new(this, new RussianLanguagePack());
 
         InitializeComponent();
 

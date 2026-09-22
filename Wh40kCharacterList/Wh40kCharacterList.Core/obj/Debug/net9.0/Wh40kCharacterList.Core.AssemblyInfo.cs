@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wh40kCharacterList.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04a4545f3b9f9d0d57135e35fbb5e400a41c1d42")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wh40kCharacterList.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wh40kCharacterList.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

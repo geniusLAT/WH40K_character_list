@@ -1,10 +1,9 @@
-namespace Wh40kCharacterList
+namespace Wh40kCharacterList;
+
+public partial class GreetingForm : Form
 {
-    public partial class GreetingForm : Form
+    public GreetingForm()
     {
-        public GreetingForm()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

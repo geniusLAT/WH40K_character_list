@@ -11,7 +11,8 @@ namespace Wh40kCharacterList
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new GreetingForm());
+            Application.Run(new CharacterForm());
+            //Application.Run(new GreetingForm());
         }
     }
 }

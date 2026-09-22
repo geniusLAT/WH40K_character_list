@@ -46,44 +46,79 @@ internal class SkillGuiManagment
 
             totalUpperMargin += 10;
 
-            if (!SkillData.IsGroup(skill))
+            var skillLevels = character.GetSkills(skill);
+
+            if (SkillData.IsGroup(skill))
             {
-                var chance = 0;
-
-                var skillLevel = character.GetSkills(skill).FirstOrDefault();
-                var levelValue = 0;
-                if (skillLevel is not null)
+                skillPanel.Size = new Size(190, 10 * (skillLevels.Count + 1));
+                for (int subSkillIndex = 0; subSkillIndex < skillLevels.Count; subSkillIndex++)
                 {
-                    levelValue = skillLevel.Level;
-                    chance = CalculcateChanceForSkill(skillLevel, character);
-                }
-                
+                    var groupSkill = skillLevels[subSkillIndex] as GroupSkillLevel;
 
-                for (int skilButtonIndex = 0; skilButtonIndex < 4; skilButtonIndex++)
-                {
-                    var skillRadioButton = new RadioButton()
+                    totalUpperMargin += 10;
+                    var subSkillPanel = new Panel()
                     {
-                        Location = new Point(130 + skilButtonIndex * 10, 0),
-                        AutoCheck = false,
-                        Checked = !(skilButtonIndex >= levelValue),
-                        Size = new Size(10, 10),
+                        //BackColor = Color.Blue,
+                        Location = new Point(0, 10 * (subSkillIndex + 1)),
+                        Size = new Size(190, 10)
                     };
-                    skillPanel.Controls.Add(skillRadioButton);
+                    
+                    skillPanel.Controls.Add(subSkillPanel);
+
+                    var subSkillLabel = new Label()
+                    {
+                        Size = new Size(130, 10),
+                        Font = new("Segoe UI", 7),
+                        Text = $"   {groupSkill?.GroupName ?? string.Empty}"
+                    };
+                    subSkillPanel.Controls.Add(subSkillLabel);
+
+                    RenderMonoSkill(skillLevels[subSkillIndex], character, subSkillPanel);
                 }
-                var skillRollDefaultChanceLabel = new Label()
-                {
-                    Location = new Point(170, 0),
-                    Size = new Size(140, 10),
-                    Font = new("Segoe UI", 7),
-                    Text = $"{chance}%"
-                };
-                skillPanel.Controls.Add(skillRollDefaultChanceLabel);
+            } else
+            {
+                RenderMonoSkill(skillLevels.FirstOrDefault(), character, skillPanel);
             }
             //var value = character.GetCharacteristic(skill);
             //characteristicLabel.Text = value.ToString();
         }
+    }
+
+    void RenderMonoSkill(
+        SkillLevel? skillLevel,
+        Character character,
+        Panel skillPanel)
+    {
+        var chance = 0;
 
 
+        var levelValue = 0;
+        if (skillLevel is not null)
+        {
+            levelValue = skillLevel.Level;
+            chance = CalculcateChanceForSkill(skillLevel, character);
+        }
+
+
+        for (int skilButtonIndex = 0; skilButtonIndex < 4; skilButtonIndex++)
+        {
+            var skillRadioButton = new RadioButton()
+            {
+                Location = new Point(130 + skilButtonIndex * 10, 0),
+                AutoCheck = false,
+                Checked = !(skilButtonIndex >= levelValue),
+                Size = new Size(10, 10),
+            };
+            skillPanel.Controls.Add(skillRadioButton);
+        }
+        var skillRollDefaultChanceLabel = new Label()
+        {
+            Location = new Point(170, 0),
+            Size = new Size(140, 10),
+            Font = new("Segoe UI", 7),
+            Text = $"{chance}%"
+        };
+        skillPanel.Controls.Add(skillRollDefaultChanceLabel);
     }
 
     int CalculcateChanceForSkill(SkillLevel skillLevel, Character character)

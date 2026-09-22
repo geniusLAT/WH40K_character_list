@@ -33,6 +33,20 @@ public partial class CharacterForm : Form
             Level = 4,
             Skill = Skill.TechUse
         });
+
+        character.Skills.Add(new GroupSkillLevel()
+        {
+            Level = 1,
+            Skill = Skill.SpeakLanguage,
+            GroupName = "Низкий готик"
+        });
+        character.Skills.Add(new GroupSkillLevel()
+        {
+            Level = 3,
+            Skill = Skill.SpeakLanguage,
+            GroupName = "Высокий готик"
+        });
+
         _manager.RenderCharacter(character);
 
     }

@@ -46,6 +46,26 @@ public partial class CharacterForm : Form
             Skill = Skill.SpeakLanguage,
             GroupName = "Высокий готик"
         });
+        for (int i = 0; i < 40; i++)
+        {
+            character.Skills.Add(new GroupSkillLevel()
+            {
+                Level = 3,
+                Skill = Skill.SpeakLanguage,
+                GroupName = $"Высокий готик {i}"
+            });
+        }
+
+        for (int i = 0; i < 40; i++)
+        {
+            character.Skills.Add(new GroupSkillLevel()
+            {
+                Level = 3,
+                Skill = Skill.Ciphers,
+                GroupName = $"Шифры {i}"
+            });
+        }
+
 
         _manager.RenderCharacter(character);
 

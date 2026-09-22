@@ -9,6 +9,8 @@ internal class SkillGuiManagment
 
     public SkillGuiElement? ChosenSkillGuiElement { get; set; }
 
+    private const int SkillLabelWidth = 110;
+
     private List<SkillGuiElement> _skillGuiElements = [];
 
     public void ClearChoice()
@@ -42,13 +44,13 @@ internal class SkillGuiManagment
             {
                 //BackColor = Color.Blue,
                 Location = new Point(10, totalUpperMargin),
-                Size = new Size(190, 10)
+                Size = new Size(180+70, 10)
             };
             currentPanelToFill.Controls.Add(skillPanel);
            
             var skillLabel = new Label()
             {
-                Size = new Size(130, 10),
+                Size = new Size(SkillLabelWidth, 10),
                 Font = new("Segoe UI", 7),
                 Text = CharacterFormManager.LanguagePack.TranslateSkill(skill)
             };
@@ -79,7 +81,7 @@ internal class SkillGuiManagment
 
                     var subSkillLabel = new Label()
                     {
-                        Size = new Size(130, 10),
+                        Size = new Size(SkillLabelWidth, 10),
                         Font = new("Segoe UI", 7),
                         Text = $"   {groupSkill?.GroupName ?? string.Empty}"
                     };
@@ -133,7 +135,7 @@ internal class SkillGuiManagment
         {
             var skillRadioButton = new RadioButton()
             {
-                Location = new Point(130 + skilButtonIndex * 10, 0),
+                Location = new Point(SkillLabelWidth + skilButtonIndex * 10, 0),
                 AutoCheck = false,
                 Checked = !(skilButtonIndex >= levelValue),
                 Size = new Size(10, 10),
@@ -142,8 +144,8 @@ internal class SkillGuiManagment
         }
         var skillRollDefaultChanceLabel = new Label()
         {
-            Location = new Point(170, 0),
-            Size = new Size(140, 10),
+            Location = new Point(SkillLabelWidth + 40, 0),
+            Size = new Size(30, 10),
             Font = new("Segoe UI", 7),
             Text = $"{chance}%"
         };

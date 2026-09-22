@@ -60,7 +60,7 @@ public class Character
         for (int i = 0; i < 49; i++)
         {
             var skill = (Skill)i;
-            if (SkillData.MustBeBasicByDefault(skill))
+            if (!SkillData.MustBeAdvancedByDefault(skill))
             {
                 Skills.Add(new SkillLevel()
                 {

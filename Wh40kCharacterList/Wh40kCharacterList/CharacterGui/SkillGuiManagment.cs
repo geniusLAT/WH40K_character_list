@@ -7,7 +7,18 @@ internal class SkillGuiManagment
 {
     public required CharacterFormManager CharacterFormManager { get; init; }
 
+    public SkillGuiElement? ChosenSkillGuiElement { get; set; }
+
     private List<SkillGuiElement> _skillGuiElements = [];
+
+    public void ClearChoice()
+    {
+        if(ChosenSkillGuiElement is null) return; 
+
+        ChosenSkillGuiElement.Panel.BackColor = Color.White;
+
+        ChosenSkillGuiElement = null;
+    }
 
     public void Render(Character character)
     {
@@ -141,6 +152,7 @@ internal class SkillGuiManagment
 
     private void SkillGuiElement_Click(object sender, EventArgs e)
     {
+        ClearChoice();
         var skillGuiElement = _skillGuiElements.Where(element => element.Panel == sender || element.Label == sender).FirstOrDefault();
 
         if (skillGuiElement is null)
@@ -149,6 +161,7 @@ internal class SkillGuiManagment
         }
 
         skillGuiElement.Panel.BackColor = Color.Yellow;
+        ChosenSkillGuiElement = skillGuiElement;
     }
 
     int CalculcateChanceForSkill(SkillLevel skillLevel, Character character)

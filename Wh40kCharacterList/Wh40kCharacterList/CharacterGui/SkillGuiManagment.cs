@@ -48,13 +48,24 @@ internal class SkillGuiManagment
 
             if (!SkillData.IsGroup(skill))
             {
+                var chance = 0;
+
+                var skillLevel = character.GetSkills(skill).FirstOrDefault();
+                var levelValue = 0;
+                if (skillLevel is not null)
+                {
+                    levelValue = skillLevel.Level;
+                    chance = CalculcateChanceForSkill(skillLevel, character);
+                }
+                
+
                 for (int skilButtonIndex = 0; skilButtonIndex < 4; skilButtonIndex++)
                 {
                     var skillRadioButton = new RadioButton()
                     {
                         Location = new Point(130 + skilButtonIndex * 10, 0),
                         AutoCheck = false,
-                        Checked = true,
+                        Checked = !(skilButtonIndex >= levelValue),
                         Size = new Size(10, 10),
                     };
                     skillPanel.Controls.Add(skillRadioButton);
@@ -64,7 +75,7 @@ internal class SkillGuiManagment
                     Location = new Point(170, 0),
                     Size = new Size(140, 10),
                     Font = new("Segoe UI", 7),
-                    Text = "50%"
+                    Text = $"{chance}%"
                 };
                 skillPanel.Controls.Add(skillRollDefaultChanceLabel);
             }
@@ -73,5 +84,41 @@ internal class SkillGuiManagment
         }
 
 
+    }
+
+    int CalculcateChanceForSkill(SkillLevel skillLevel, Character character)
+    {
+        if (skillLevel.Level < 1)
+        {
+            return 0;
+        }
+
+        if (skillLevel.Skill is null)
+        {
+            return -1;
+        }
+
+        var assosiatedCharacteristic = SkillData.GetAssisiatedDefaultCharacteristic((Skill)skillLevel.Skill);
+
+        if (assosiatedCharacteristic is null)
+        {
+            return -1;
+        }
+
+        var characteristicValue = character.GetCharacteristic((Characteristic)assosiatedCharacteristic);
+
+        if (skillLevel.Level == 1)
+        {
+            return characteristicValue/2;
+        }
+        if (skillLevel.Level == 2)
+        {
+            return characteristicValue;
+        }
+        if (skillLevel.Level == 3)
+        {
+            return characteristicValue + 10;
+        }
+        return characteristicValue + 20;
     }
 }

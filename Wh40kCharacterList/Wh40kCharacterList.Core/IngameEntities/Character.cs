@@ -48,7 +48,7 @@ public class Character
 
     #endregion
 
-    public List<SkillLevel> Skills { get; set; }
+    public List<SkillLevel> Skills { get; set; } = [];
 
     public Character()
     {
@@ -146,4 +146,9 @@ public class Character
     }
     
     #endregion
+
+    public List<SkillLevel> GetSkills(Skill skill)
+    {
+        return Skills.Where(skillLevel => skillLevel.Skill == skill).ToList();
+    }
 }

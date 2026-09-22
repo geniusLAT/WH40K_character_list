@@ -48,6 +48,33 @@ public class Character
 
     #endregion
 
+    public List<SkillLevel> Skills { get; set; }
+
+    public Character()
+    {
+        FillBasicSkill();
+    }
+
+    public void FillBasicSkill()
+    {
+        for (int i = 0; i < 49; i++)
+        {
+            var skill = (Skill)i;
+            if (SkillData.MustBeBasicByDefault(skill))
+            {
+                Skills.Add(new SkillLevel()
+                {
+                    Skill = skill,
+                    Level = 1
+                }
+                    );
+            }
+        }
+    }
+
+
+    #region CharacteristicMethods
+
     public int GetCharacteristic(Characteristic characteristic)
     {
         return characteristic switch
@@ -117,4 +144,6 @@ public class Character
             _ => throw new ArgumentException(),
         };
     }
+    
+    #endregion
 }

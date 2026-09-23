@@ -28,10 +28,6 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        //if (request.UserName != "admin" || request.Password != "password123")
-        //{
-        //    return Unauthorized(new { message = "Invalid" });
-        //}
         var user =await _userReader.GetUserByLoginAsync(request.UserName);
         if (user is null || request.Password != user.Password)
         {
@@ -45,11 +41,15 @@ public class AuthController : ControllerBase
             lifetime: TimeSpan.FromDays(400)
         );
 
+        user.LastToken = token;
+        var updatedUser = await _userWriter.UpdateUserAsync(user);
+
         return Ok(new
         {
             access_token = token,
             token_type = "Bearer",
-            expires_in = TimeSpan.FromDays(400).TotalSeconds
+            expires_in = TimeSpan.FromDays(400).TotalSeconds,
+            User = updatedUser
         });
     }
 }

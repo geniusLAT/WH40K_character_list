@@ -5,4 +5,6 @@ namespace Wh40kCharacterList.WebApi.Repository.Database.Writers.Interfaces;
 public interface IUserWriter
 {
     Task<UserEntity> SaveUserAsync(UserToSaveDto userToSave);
+
+    Task<UserEntity> UpdateUserAsync(UserEntity user);
 }

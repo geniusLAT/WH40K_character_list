@@ -10,6 +10,7 @@ using Wh40kCharacterList.WebApi.Migrations;
 using Wh40kCharacterList.WebApi.Repository.Database.Readers.Interfaces;
 using Wh40kCharacterList.WebApi.Repository.Database.Writers.Implementations;
 using Wh40kCharacterList.WebApi.Repository.Database.Writers.Interfaces;
+using Wh40kCharacterList.WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -88,6 +89,7 @@ builder.Services
 
 builder.Services.AddCustomBearerAuthentication();
 builder.Services.AddSingleton<TokenService>();
+builder.Services.AddScoped<AuthService, AuthService>();
 
 builder.Services.AddScoped<IUserReader, UserReader>();
 builder.Services.AddScoped<IUserWriter, UserWriter>();

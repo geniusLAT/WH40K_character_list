@@ -3,25 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 using Wh40kCharacterList.Core.NetworkDtos;
 using Wh40kCharacterList.WebApi.Repository.Database.Readers.Interfaces;
 using Wh40kCharacterList.WebApi.Repository.Database.Writers.Interfaces;
+using Wh40kCharacterList.WebApi.Services;
 
 [ApiController]
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly TokenService _tokenService;
-
     private readonly IUserReader _userReader;
 
-    private readonly IUserWriter _userWriter;
+    private readonly AuthService _authService;
 
     public AuthController(
-        TokenService tokenService,
-        IUserReader userReader,
-        IUserWriter userWriter)
+        AuthService authService,
+        IUserReader userReader)
     {
         _userReader = userReader;
-        _userWriter = userWriter;
-        _tokenService = tokenService;
+        _authService = authService;
     }
 
     [AllowAnonymous]
@@ -34,22 +31,8 @@ public class AuthController : ControllerBase
             return Unauthorized(new { message = "Invalid" });
         }
 
-        var token = _tokenService.GenerateToken(
-            userId: "user-42",
-            userName: request.UserName,
-            role: "Admin",
-            lifetime: TimeSpan.FromDays(400)
-        );
+        var updatedUser = await _authService.Login(user);
 
-        user.LastToken = token;
-        var updatedUser = await _userWriter.UpdateUserAsync(user);
-
-        return Ok(new
-        {
-            access_token = token,
-            token_type = "Bearer",
-            expires_in = TimeSpan.FromDays(400).TotalSeconds,
-            User = updatedUser
-        });
+        return Ok(updatedUser);
     }
 }

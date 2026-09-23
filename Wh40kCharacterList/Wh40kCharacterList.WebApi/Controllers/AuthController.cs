@@ -9,7 +9,6 @@ using Wh40kCharacterList.WebApi.Services;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly IUserReader _userReader;
 
     private readonly AuthService _authService;
 
@@ -17,7 +16,7 @@ public class AuthController : ControllerBase
         AuthService authService,
         IUserReader userReader)
     {
-        _userReader = userReader;
+       
         _authService = authService;
     }
 
@@ -25,13 +24,11 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        var user =await _userReader.GetUserByLoginAsync(request.UserName);
-        if (user is null || request.Password != user.Password)
+        var updatedUser = await _authService.Login(request);
+        if (updatedUser is null)
         {
             return Unauthorized(new { message = "Invalid" });
         }
-
-        var updatedUser = await _authService.Login(user);
 
         return Ok(updatedUser);
     }

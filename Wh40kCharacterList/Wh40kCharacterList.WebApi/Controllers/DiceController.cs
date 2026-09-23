@@ -19,6 +19,12 @@ public class DiceController : ControllerBase
     [ProducesResponseType(typeof(SkillCheckRollResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> RollSkillCheck([FromBody] SkillCheckRoll request)
     {
+        bool isAdmin = User.IsInRole("Admin");
+        if (isAdmin)
+        {
+            return BadRequest();
+        }
+
         return Ok(await _diceService.RollSkillCheck(request));
     }
 }

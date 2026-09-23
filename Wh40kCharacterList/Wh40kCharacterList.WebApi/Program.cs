@@ -91,6 +91,7 @@ builder.Services.AddCustomBearerAuthentication();
 builder.Services.AddSingleton<TokenService>();
 builder.Services.AddScoped<AuthService, AuthService>();
 builder.Services.AddScoped<DiceService>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddScoped<IUserReader, UserReader>();
 builder.Services.AddScoped<IUserWriter, UserWriter>();

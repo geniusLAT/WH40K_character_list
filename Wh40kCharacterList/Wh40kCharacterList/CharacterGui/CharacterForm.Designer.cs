@@ -100,6 +100,8 @@ partial class CharacterForm : Form
         tabPage2 = new TabPage();
         RollDiceButton = new Button();
         RollDiceChanceLabel = new Label();
+        LogPanel = new Panel();
+        LogLabel = new Label();
         SkillTabControl.SuspendLayout();
         tabPage1.SuspendLayout();
         panel1.SuspendLayout();
@@ -112,6 +114,7 @@ partial class CharacterForm : Form
         StrenghtPanel.SuspendLayout();
         BalliticSkillPanel.SuspendLayout();
         WeaponSkillPanel.SuspendLayout();
+        LogPanel.SuspendLayout();
         SuspendLayout();
         // 
         // SkillTabControl
@@ -874,12 +877,33 @@ partial class CharacterForm : Form
         RollDiceChanceLabel.TabIndex = 2;
         RollDiceChanceLabel.Text = "label2";
         // 
+        // LogPanel
+        // 
+        LogPanel.AutoScroll = true;
+        LogPanel.BackColor = SystemColors.ActiveCaption;
+        LogPanel.Controls.Add(LogLabel);
+        LogPanel.Location = new Point(662, 53);
+        LogPanel.Name = "LogPanel";
+        LogPanel.Size = new Size(247, 602);
+        LogPanel.TabIndex = 3;
+        // 
+        // LogLabel
+        // 
+        LogLabel.AutoSize = true;
+        LogLabel.ForeColor = SystemColors.ButtonHighlight;
+        LogLabel.Location = new Point(3, 0);
+        LogLabel.Name = "LogLabel";
+        LogLabel.Size = new Size(38, 15);
+        LogLabel.TabIndex = 0;
+        LogLabel.Text = "label2";
+        // 
         // CharacterForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         AutoScroll = true;
-        ClientSize = new Size(800, 741);
+        ClientSize = new Size(910, 741);
+        Controls.Add(LogPanel);
         Controls.Add(RollDiceChanceLabel);
         Controls.Add(RollDiceButton);
         Controls.Add(SkillTabControl);
@@ -907,6 +931,8 @@ partial class CharacterForm : Form
         BalliticSkillPanel.PerformLayout();
         WeaponSkillPanel.ResumeLayout(false);
         WeaponSkillPanel.PerformLayout();
+        LogPanel.ResumeLayout(false);
+        LogPanel.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -985,4 +1011,6 @@ partial class CharacterForm : Form
     private Label label1;
     public Button RollDiceButton;
     public Label RollDiceChanceLabel;
+    public Panel LogPanel;
+    public Label LogLabel;
 }

@@ -13,6 +13,8 @@ internal class CharacterFormManager
 
     public readonly RollDiceManagment RollDiceManagment;
 
+    public readonly LogPanelGuiManagment LogPanelGuiManagment;
+
     private readonly CharacteristicGuiManagment _characteristicGuiManagment;
 
     private readonly SkillGuiManagment _skillGuiManagment;
@@ -22,6 +24,8 @@ internal class CharacterFormManager
         LanguagePack = languagePack;
         Form = characterForm;
         RollDiceManagment = new()
+        { CharacterFormManager = this };
+        LogPanelGuiManagment = new()
         { CharacterFormManager = this };
         _characteristicGuiManagment = new()
         { CharacterFormManager = this };

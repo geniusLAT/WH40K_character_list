@@ -23,6 +23,6 @@ internal class RollDiceManagment
         };
         Random random = new();
         roll.Roll(random);
-        MessageBox.Show(JsonConvert.SerializeObject(roll.RollResult));
+        CharacterFormManager.LogPanelGuiManagment.AddText(JsonConvert.SerializeObject(roll.RollResult));
     }
 }

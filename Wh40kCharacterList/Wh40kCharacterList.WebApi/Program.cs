@@ -1,9 +1,13 @@
-﻿using FluentMigrator.Runner;
+﻿using BillingTeremokRouter.Infrastructure.Repository.Database.Readers.Implementations;
+using FluentMigrator.Runner;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi;
 using Npgsql;
 using Wh40kCharacterList.WebApi.Configs;
 using Wh40kCharacterList.WebApi.Migrations;
+using Wh40kCharacterList.WebApi.Repository.Database.Readers.Interfaces;
+using Wh40kCharacterList.WebApi.Repository.Database.Writers.Implementations;
+using Wh40kCharacterList.WebApi.Repository.Database.Writers.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +76,9 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddCustomBearerAuthentication();
 builder.Services.AddSingleton<TokenService>();
 
+builder.Services.AddScoped<IUserReader, UserReader>();
+builder.Services.AddScoped<IUserWriter, UserWriter>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -97,5 +104,23 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var reader = scope.ServiceProvider.GetRequiredService<IUserReader>();
+    var admin = await reader.GetAdminAsync();
+    if (admin is null)//recreate admin if necessary
+    {
+        var writer = scope.ServiceProvider.GetRequiredService<IUserWriter>();
+        await writer.SaveUserAsync(new()
+        {
+            Admin = true,
+            Name = "test",
+            Password = "password",
+            LastToken = Guid.NewGuid().ToString()
+        }
+            );
+    }
+}
 
 app.Run();

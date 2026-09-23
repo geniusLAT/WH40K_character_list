@@ -1,8 +1,10 @@
 ﻿using BillingTeremokRouter.Infrastructure.Repository.Database.Readers.Implementations;
 using FluentMigrator.Runner;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi;
 using Npgsql;
+using Wh40kCharacterList.Core.AdministrativeEntities;
 using Wh40kCharacterList.WebApi.Configs;
 using Wh40kCharacterList.WebApi.Migrations;
 using Wh40kCharacterList.WebApi.Repository.Database.Readers.Interfaces;
@@ -73,6 +75,17 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+builder.Services
+            .AddOptions<UserToSaveDto>()
+            .Bind(builder.Configuration.GetSection("Admin"))
+            .Validate(
+                config => !string.IsNullOrWhiteSpace(config.Name),
+                "Admin has no Name")
+            .Validate(
+                config => !string.IsNullOrWhiteSpace(config.Password),
+                "Admin has no Password")
+            .ValidateOnStart();
+
 builder.Services.AddCustomBearerAuthentication();
 builder.Services.AddSingleton<TokenService>();
 
@@ -111,15 +124,12 @@ using (var scope = app.Services.CreateScope())
     var admin = await reader.GetAdminAsync();
     if (admin is null)//recreate admin if necessary
     {
+        var adminToSave = scope.ServiceProvider.GetRequiredService<IOptions<UserToSaveDto>>().Value;
+        adminToSave.Admin = true;
+        adminToSave.LastToken = Guid.NewGuid().ToString();
+
         var writer = scope.ServiceProvider.GetRequiredService<IUserWriter>();
-        await writer.SaveUserAsync(new()
-        {
-            Admin = true,
-            Name = "test",
-            Password = "password",
-            LastToken = Guid.NewGuid().ToString()
-        }
-            );
+        await writer.SaveUserAsync(adminToSave);
     }
 }
 

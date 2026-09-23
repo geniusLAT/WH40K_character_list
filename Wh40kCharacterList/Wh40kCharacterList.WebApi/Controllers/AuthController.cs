@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Wh40kCharacterList.Core.NetworkDtos;
+using Wh40kCharacterList.WebApi.Repository.Database.Readers.Interfaces;
+using Wh40kCharacterList.WebApi.Repository.Database.Writers.Interfaces;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -7,19 +10,34 @@ public class AuthController : ControllerBase
 {
     private readonly TokenService _tokenService;
 
-    public AuthController(TokenService tokenService)
+    private readonly IUserReader _userReader;
+
+    private readonly IUserWriter _userWriter;
+
+    public AuthController(
+        TokenService tokenService,
+        IUserReader userReader,
+        IUserWriter userWriter)
     {
+        _userReader = userReader;
+        _userWriter = userWriter;
         _tokenService = tokenService;
     }
 
+    [AllowAnonymous]
     [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest request)
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        if (request.UserName != "admin" || request.Password != "password123")
+        //if (request.UserName != "admin" || request.Password != "password123")
+        //{
+        //    return Unauthorized(new { message = "Invalid" });
+        //}
+        var user =await _userReader.GetUserByLoginAsync(request.UserName);
+        if (user is null || request.Password != user.Password)
         {
             return Unauthorized(new { message = "Invalid" });
         }
-        
+
         var token = _tokenService.GenerateToken(
             userId: "user-42",
             userName: request.UserName,

@@ -31,4 +31,10 @@ public class UserService
 
         return savedUser;
     }
+
+    public async Task<IEnumerable<UserEntity>> GetUsers(int limit, int offset)
+    {
+        var users = await _userReader.GetUsersAsync(limit, offset);
+        return users;
+    }
 }

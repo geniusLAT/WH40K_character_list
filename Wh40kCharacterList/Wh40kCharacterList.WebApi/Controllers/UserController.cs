@@ -31,4 +31,17 @@ public class UserController : ControllerBase
         }
         return Ok(createdUser);
     }
+
+    [HttpGet("users")]
+    [ProducesResponseType(typeof(List<UserEntity>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> AddUser([FromQuery] int limit, [FromQuery] int offset)
+    {
+        bool isAdmin = User.IsInRole("Admin");
+        if (!isAdmin)
+        {
+            return Forbid();
+        }
+        var users = await _userService.GetUsers(limit, offset);
+        return Ok(users);
+    }
 }

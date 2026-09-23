@@ -147,4 +147,39 @@ public sealed class UserReader  : IUserReader
             throw;
         }
     }
+
+    public async Task<IEnumerable<UserEntity>> GetUsersAsync(
+        int limit,
+        int offset,
+        CancellationToken cancellationToken = default)
+    {
+
+        const string sql = """
+                           SELECT id AS Id,
+                                  name AS Name,
+                                  admin AS Admin,
+                                  password AS Password,
+                                  last_token AS LastToken,
+                                  creation_date AS CreationDate,
+                                  last_update AS LastUpdate
+                           FROM public.user_tbl
+                           LIMIT @limit
+                           OFFSET @offset
+                           """;
+
+        try
+        {
+            await using var connection = await _dataSource.OpenConnectionAsync(cancellationToken);
+            var command = new CommandDefinition(
+                sql,
+                new { limit, offset },
+                cancellationToken: cancellationToken);
+
+            return (await connection.QueryAsync<UserEntity>(command)).ToList();
+        }
+        catch (Exception exception)
+        {
+            throw;
+        }
+    }
 }

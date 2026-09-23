@@ -1,0 +1,6 @@
+@Wh40kCharacterList.WebApi_HostAddress = http://localhost:5243
+
+GET {{Wh40kCharacterList.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

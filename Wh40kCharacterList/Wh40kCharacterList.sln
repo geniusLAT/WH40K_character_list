@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36408.4 d17.14
+VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wh40kCharacterList", "Wh40kCharacterList\Wh40kCharacterList.csproj", "{2826BBBA-434E-40FA-82A1-263F6CE96BA5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wh40kCharacterList.Core", "Wh40kCharacterList.Core\Wh40kCharacterList.Core.csproj", "{68CCE456-5C0F-4E1D-862A-2C59A733136A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wh40kCharacterList.WebApi", "Wh40kCharacterList.WebApi\Wh40kCharacterList.WebApi.csproj", "{2FEBA19C-339A-4FD5-B181-3C75087C941A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{68CCE456-5C0F-4E1D-862A-2C59A733136A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68CCE456-5C0F-4E1D-862A-2C59A733136A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68CCE456-5C0F-4E1D-862A-2C59A733136A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FEBA19C-339A-4FD5-B181-3C75087C941A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FEBA19C-339A-4FD5-B181-3C75087C941A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FEBA19C-339A-4FD5-B181-3C75087C941A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FEBA19C-339A-4FD5-B181-3C75087C941A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

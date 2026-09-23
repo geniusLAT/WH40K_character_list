@@ -17,7 +17,7 @@ internal class RollDiceManagment
 
     public void SendSkillCheckClicked()
     {
-        Roll100D roll = new()
+        SkillCheckRoll roll = new()
         {
             Difficulty = resultD100Chance
         };

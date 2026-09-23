@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Wh40kCharacterList.Core.DiceRolls.RollResults;
 
-public class Roll100DResult 
+public class SkillCheckRollResult 
 {
     [Required]
     [JsonPropertyName("roll-result")]

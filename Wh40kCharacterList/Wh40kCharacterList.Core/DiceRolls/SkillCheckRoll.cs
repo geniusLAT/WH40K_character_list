@@ -3,10 +3,10 @@ using Wh40kCharacterList.Core.DiceRolls.RollResults;
 
 namespace Wh40kCharacterList.Core.DiceRolls;
 
-public class Roll100D : RollDice
+public class SkillCheckRoll : RollDice
 {
     [JsonPropertyName("roll-result")]
-    public Roll100DResult? RollResult { get; set; }
+    public SkillCheckRollResult? RollResult { get; set; }
 
     [JsonPropertyName("difficulty")]
     public int Difficulty { get; set; }

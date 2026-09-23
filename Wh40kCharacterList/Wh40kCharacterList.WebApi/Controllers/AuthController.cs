@@ -22,6 +22,7 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("login")]
+    [ProducesResponseType(typeof(AuthResultDto), StatusCodes.Status200OK)]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         var updatedUser = await _authService.Login(request);

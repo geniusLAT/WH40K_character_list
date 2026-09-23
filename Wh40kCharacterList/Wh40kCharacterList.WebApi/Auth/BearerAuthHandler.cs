@@ -2,17 +2,22 @@
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
+using Wh40kCharacterList.WebApi.Repository.Database.Readers.Interfaces;
 
 public class BearerAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {
     public const string SchemeName = "CustomBearer";
 
+    private readonly IUserReader _userReader;
+
     public BearerAuthHandler(
         IOptionsMonitor<AuthenticationSchemeOptions> options,
         ILoggerFactory logger,
-        UrlEncoder encoder)
+        UrlEncoder encoder,
+        IUserReader userReader)
         : base(options, logger, encoder)
     {
+        _userReader = userReader;
     }
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -51,13 +56,16 @@ public class BearerAuthHandler : AuthenticationHandler<AuthenticationSchemeOptio
         return AuthenticateResult.Success(ticket);
     }
 
-    private Task<(bool IsValid, string? UserId, string? Role)> ValidateTokenAsync(string token)
+    private async Task<(bool IsValid, string? UserId, string? Role)> ValidateTokenAsync(string token)
     {
-        if (token == "secret-token-123")
+        var user = await _userReader.GetUserByTokenAsync(token);
+
+        if (user is not null)
         {
-            return Task.FromResult((true, (string?)"user-42", (string?)"Admin"));
+            string? role = user.Admin ? "Admin" : "CommonUser";
+            return await Task.FromResult((true, (string?)user.Name, role));
         }
 
-        return Task.FromResult((false, (string?)null, (string?)null));
+        return await Task.FromResult((false, (string?)null, (string?)null));
     }
 }

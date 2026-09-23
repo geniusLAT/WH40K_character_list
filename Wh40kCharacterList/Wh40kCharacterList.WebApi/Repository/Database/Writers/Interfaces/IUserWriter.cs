@@ -1,4 +1,5 @@
 ﻿using Wh40kCharacterList.Core.AdministrativeEntities;
+using Wh40kCharacterList.Core.AdministrativeEntities.DtosToSave;
 
 namespace Wh40kCharacterList.WebApi.Repository.Database.Writers.Interfaces;
 

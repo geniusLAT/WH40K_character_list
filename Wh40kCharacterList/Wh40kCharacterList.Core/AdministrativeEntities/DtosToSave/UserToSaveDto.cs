@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace Wh40kCharacterList.Core.AdministrativeEntities;
+namespace Wh40kCharacterList.Core.AdministrativeEntities.DtosToSave;
 
 public class UserToSaveDto
 {

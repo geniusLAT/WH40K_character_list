@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi;
 using Npgsql;
-using Wh40kCharacterList.Core.AdministrativeEntities;
+using Wh40kCharacterList.Core.AdministrativeEntities.DtosToSave;
 using Wh40kCharacterList.WebApi.Configs;
 using Wh40kCharacterList.WebApi.Migrations;
 using Wh40kCharacterList.WebApi.Repository.Database.Readers.Interfaces;

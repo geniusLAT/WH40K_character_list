@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Npgsql;
 using Wh40kCharacterList.Core.AdministrativeEntities;
+using Wh40kCharacterList.Core.AdministrativeEntities.DtosToSave;
 using Wh40kCharacterList.WebApi.Repository.Database.Writers.Interfaces;
 
 namespace Wh40kCharacterList.WebApi.Repository.Database.Writers.Implementations;

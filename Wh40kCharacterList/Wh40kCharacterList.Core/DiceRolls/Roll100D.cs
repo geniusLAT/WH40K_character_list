@@ -1,30 +1,28 @@
 ﻿using System.Text.Json.Serialization;
+using Wh40kCharacterList.Core.DiceRolls.RollResults;
 
 namespace Wh40kCharacterList.Core.DiceRolls;
 
 public class Roll100D : RollDice
 {
-    #region result
-
     [JsonPropertyName("roll-result")]
-    public int? RollResult { get; set; }
-
-    [JsonPropertyName("roll-success")]
-    public bool? RollSuccess { get; set; }
-
-    [JsonPropertyName("grades")]
-    public int? Grades { get; set; }
-
-    #endregion
+    public Roll100DResult? RollResult { get; set; }
 
     [JsonPropertyName("difficulty")]
     public int Difficulty { get; set; }
 
     public override void Roll(Random random)
     {
-        RollResult = random.Next(1, 101);
-        RollSuccess = RollResult <= Difficulty;
-        Grades = (RollResult - Difficulty) / 10;
-        if (Grades < 0) Grades *= -1;
+        var rollResult = random.Next(1, 101);
+        var rollSuccess = rollResult <= Difficulty;
+        var grades = (rollResult - Difficulty) / 10;
+        if (grades < 0) grades *= -1;
+
+        RollResult = new()
+        {
+            Grades = grades,
+            RollResult = rollResult,
+            RollSuccess = rollSuccess
+        };
     }
 }

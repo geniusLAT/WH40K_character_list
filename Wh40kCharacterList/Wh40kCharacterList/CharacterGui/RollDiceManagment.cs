@@ -1,4 +1,7 @@
-﻿namespace Wh40kCharacterList.CharacterGui;
+﻿using Wh40kCharacterList.Core.DiceRolls;
+using Newtonsoft.Json;
+
+namespace Wh40kCharacterList.CharacterGui;
 
 internal class RollDiceManagment
 {
@@ -10,5 +13,16 @@ internal class RollDiceManagment
     {
         CharacterFormManager.Form.RollDiceChanceLabel.Text = basicChance.ToString();
         resultD100Chance = basicChance;
+    }
+
+    public void SendSkillCheckClicked()
+    {
+        Roll100D roll = new()
+        {
+            Difficulty = resultD100Chance
+        };
+        Random random = new();
+        roll.Roll(random);
+        MessageBox.Show(JsonConvert.SerializeObject(roll.RollResult));
     }
 }

@@ -70,4 +70,9 @@ public partial class CharacterForm : Form
         _manager.RenderCharacter(character);
 
     }
+
+    private void RollDiceButton_Click(object sender, EventArgs e)
+    {
+        _manager.RollDiceManagment.SendSkillCheckClicked();
+    }
 }

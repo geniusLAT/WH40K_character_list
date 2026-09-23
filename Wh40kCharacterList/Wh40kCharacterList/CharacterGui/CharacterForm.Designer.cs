@@ -863,6 +863,7 @@ partial class CharacterForm : Form
         RollDiceButton.TabIndex = 1;
         RollDiceButton.Text = "Кинуть кубик";
         RollDiceButton.UseVisualStyleBackColor = true;
+        RollDiceButton.Click += RollDiceButton_Click;
         // 
         // RollDiceChanceLabel
         // 

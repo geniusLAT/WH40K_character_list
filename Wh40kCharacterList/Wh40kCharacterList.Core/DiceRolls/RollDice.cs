@@ -2,5 +2,5 @@
 
 public abstract class RollDice
 {
-    public abstract void Roll();
+    public abstract void Roll(Random random);
 }

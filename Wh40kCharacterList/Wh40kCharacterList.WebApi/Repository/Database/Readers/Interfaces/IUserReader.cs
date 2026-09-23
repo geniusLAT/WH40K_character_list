@@ -10,5 +10,7 @@ public interface IUserReader
 
     Task<UserEntity?> GetUserByTokenAsync(string token, CancellationToken cancellationToken = default);
 
+    Task<UserEntity?> GetUserByLoginAsync(string login, CancellationToken cancellationToken = default);
+
     Task<UserEntity?> GetAdminAsync(CancellationToken cancellationToken = default);
 }

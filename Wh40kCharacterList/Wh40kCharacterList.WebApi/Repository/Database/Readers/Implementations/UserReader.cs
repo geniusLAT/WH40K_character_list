@@ -84,6 +84,39 @@ public sealed class UserReader  : IUserReader
         }
     }
 
+    public async Task<UserEntity?> GetUserByLoginAsync(
+        string login,
+        CancellationToken cancellationToken = default)
+    {
+        const string sql = """
+                           SELECT id AS Id,
+                                  name AS Name,
+                                  admin AS Admin,
+                                  password AS Password,
+                                  last_token AS LastToken,
+                                  creation_date AS CreationDate,
+                                  last_update AS LastUpdate
+                           FROM public.user_tbl
+                           WHERE name = @login
+                           """;
+
+        try
+        {
+            await using var connection = await _dataSource.OpenConnectionAsync(cancellationToken);
+            var command = new CommandDefinition(
+                sql,
+                new { login },
+                cancellationToken: cancellationToken);
+
+            return await connection.QuerySingleOrDefaultAsync<UserEntity>(command);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogError(exception, "Failed to load UserEntity with id {login}", login);
+            throw;
+        }
+    }
+
     public async Task<UserEntity?> GetAdminAsync(
         CancellationToken cancellationToken = default)
     {
